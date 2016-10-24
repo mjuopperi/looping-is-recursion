@@ -50,7 +50,12 @@
     (parities a-seq #{})))
 
 (defn fast-fibo [n]
-  ":(")
+  (loop [cur 0
+         fn-1 0
+         fn-0 1]
+   (if (== cur n)
+    fn-1
+    (recur (inc cur) fn-0 (+ fn-1 fn-0)))))
 
 (defn cut-at-repetition [a-seq]
   [":("])
