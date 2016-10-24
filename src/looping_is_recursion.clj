@@ -31,7 +31,12 @@
     (index-acc pred a-seq 0)))
 
 (defn avg [a-seq]
-  -1)
+  (let [avg-acc (fn [a-seq sum n]
+                 (cond
+                   (and (empty? a-seq) (= n 0)) 0
+                   (empty? a-seq) (/ sum n)
+                   :else (recur (rest a-seq) (+ sum (first a-seq)) (inc n))))]
+    (avg-acc a-seq 0 0)))
 
 (defn parity [a-seq]
   ":(")
