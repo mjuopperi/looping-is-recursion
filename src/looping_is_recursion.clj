@@ -39,7 +39,15 @@
     (avg-acc a-seq 0 0)))
 
 (defn parity [a-seq]
-  ":(")
+  (let [toggle (fn [a-set elem]
+                (if (contains? a-set elem)
+                 (disj a-set elem)
+                 (conj a-set elem)))
+        parities (fn [remaining parity-set]
+                  (if (empty? remaining)
+                   parity-set
+                   (recur (rest remaining) (toggle parity-set (first remaining)))))]
+    (parities a-seq #{})))
 
 (defn fast-fibo [n]
   ":(")
