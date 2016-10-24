@@ -1,7 +1,11 @@
 (ns looping-is-recursion)
 
 (defn power [base exp]
-  ":(")
+  (let [power_acc (fn [acc n]
+                (if (zero? n)
+                  acc
+                  (recur (* acc base) (dec n))))]
+    (power_acc 1 exp)))
 
 (defn last-element [a-seq]
   ":(")
@@ -23,4 +27,3 @@
 
 (defn cut-at-repetition [a-seq]
   [":("])
-
