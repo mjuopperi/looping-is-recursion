@@ -58,4 +58,13 @@
     (recur (inc cur) fn-0 (+ fn-1 fn-0)))))
 
 (defn cut-at-repetition [a-seq]
-  [":("])
+  (loop [acc []
+         enc #{}
+         remaining a-seq]
+   (cond
+     (empty? remaining)                acc
+     (contains? enc (first remaining)) acc
+     :else (recur
+       (conj acc (first remaining))
+       (conj enc (first remaining))
+       (rest remaining)))))
