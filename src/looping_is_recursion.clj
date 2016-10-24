@@ -8,7 +8,11 @@
     (power_acc 1 exp)))
 
 (defn last-element [a-seq]
-  ":(")
+  (let [last-acc (fn [last remaining]
+                   (if (empty? remaining)
+                    last
+                    (recur (first remaining) (rest remaining))))]
+    (last-acc nil a-seq)))
 
 (defn seq= [seq1 seq2]
   ":(")
