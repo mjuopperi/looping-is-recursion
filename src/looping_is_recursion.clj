@@ -23,7 +23,12 @@
     :else (recur (rest seq1) (rest seq2))))
 
 (defn find-first-index [pred a-seq]
-  ":(")
+  (let [index-acc (fn [pred a-seq i]
+                    (cond
+                      (empty? a-seq) nil
+                      (pred (first a-seq)) i
+                      :else (recur pred (rest a-seq) (inc i))))]
+    (index-acc pred a-seq 0)))
 
 (defn avg [a-seq]
   -1)
